@@ -13,6 +13,7 @@ Aplicación web progresiva (PWA) para calcular percentiles antropométricos pedi
 - ✅ Funciona completamente offline
 - ✅ Diseño responsive para móviles y tablets
 - ✅ Basado en estándares cubanos de crecimiento
+- ✅ Interfaz oscura profesional (design system compartido con CliniCalc), con alternancia claro/oscuro
 
 ## 📱 Instalación como PWA
 
@@ -75,22 +76,30 @@ Las tablas utilizadas provienen de los estudios de crecimiento realizados en Cub
 ## 💻 Tecnologías Utilizadas
 
 - HTML5
-- CSS3 (con diseño responsive)
-- JavaScript (Vanilla)
+- CSS3 (design system con variables, modo oscuro por defecto)
+- JavaScript (Vanilla, sin frameworks ni build step)
 - Service Worker (para funcionalidad offline)
 - PWA (Progressive Web App)
 
 ## 📁 Estructura de Archivos
 
 ```
-percentiles-cubanos-pwa/
-├── index.html                  # Interfaz principal
+PerCuba/
+├── index.html                  # Shell + estructura HTML
 ├── service-worker.js           # Service Worker para offline
 ├── manifest.json               # Manifiesto de la PWA
 ├── percentiles-cubanos.json    # Base de datos de percentiles
-├── icon-192.png               # Ícono 192x192
-├── icon-512.png               # Ícono 512x512
-└── README.md                  # Este archivo
+├── icon-192.png                # Ícono 192x192
+├── icon-512.png                # Ícono 512x512
+├── css/
+│   └── main.css                # Design system (variables, modo oscuro, componentes)
+├── js/
+│   ├── config.js                # APP_VERSION + metadata de medidas
+│   ├── storage.js                # Persistencia de preferencia de tema (LocalStorage)
+│   ├── percentiles.js            # Lógica de cálculo pura (sin DOM)
+│   ├── ui.js                     # Renderizado de tarjetas de resultado y toasts
+│   └── app.js                    # Inicialización, orquestación, Service Worker
+└── README.md                   # Este archivo
 ```
 
 ## 🔄 Actualización de Datos

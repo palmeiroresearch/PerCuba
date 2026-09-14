@@ -1,5 +1,5 @@
 // Versión del cache
-const CACHE_VERSION = 'v1.1.0';
+const CACHE_VERSION = 'v1.2.0';
 const CACHE_NAME = `percentiles-cubanos-${CACHE_VERSION}`;
 
 // Archivos a cachear
@@ -9,14 +9,22 @@ const FILES_TO_CACHE = [
   './percentiles-cubanos.json',
   './manifest.json',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './css/main.css',
+  './js/config.js',
+  './js/storage.js',
+  './js/percentiles.js',
+  './js/ui.js',
+  './js/app.js'
 ];
 
 // Instalar Service Worker y cachear archivos
+// NOTA: no se llama self.skipWaiting() aquí a propósito — se espera la
+// confirmación del usuario (banner "Nueva versión disponible") antes de
+// activar la versión nueva. Ver SKIP_WAITING más abajo.
 self.addEventListener('install', event => {
   console.log('[ServiceWorker] Instalando...');
-  self.skipWaiting();
-  
+
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {

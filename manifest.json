@@ -4,8 +4,8 @@
   "description": "Calculadora de percentiles pediátricos con estándares cubanos para práctica clínica",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#667eea",
-  "theme_color": "#2c3e50",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
   "orientation": "portrait",
   "scope": "./",
   "icons": [

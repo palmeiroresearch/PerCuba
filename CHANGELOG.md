@@ -1,5 +1,36 @@
 # 📝 Changelog - Calculadora de Percentiles Pediátricos Cubanos
 
+## Versión 1.2.0 (Septiembre 2026)
+
+### 🎨 Rediseño completo de interfaz
+
+- ✅ Nueva interfaz oscura profesional, adoptando el design system de **CliniCalc**: paleta de variables CSS, tarjetas con acento de color por tipo de medida, botones, inputs y alertas consistentes
+- ✅ Modo oscuro por defecto (`#0f172a` fondo / `#1e293b` tarjetas / acento verde menta `#78daab`), con alternancia claro/oscuro persistida en LocalStorage
+- ✅ Selector de sexo rediseñado como control segmentado (en vez de radios sueltos)
+- ✅ Tarjetas de resultado con color de categoría por medida (peso, talla, circunferencia cefálica, IMC, peso para talla), barra de percentil restyleada y caja de interpretación con badge de severidad (success/warning/danger)
+- ✅ Validaciones de formulario migradas de `alert()` a notificaciones tipo toast, coherentes con el resto de la interfaz
+- ✅ Indicador de modo offline rediseñado como badge fijo
+- ✅ Sistema de actualización con confirmación del usuario (patrón CliniCalc): el Service Worker ya no activa la versión nueva automáticamente (`skipWaiting()` retirado del `install`); en su lugar espera y muestra un banner "Nueva versión disponible" con botones **Ahora**/**Luego** — si se pospone, el banner reaparece en la siguiente apertura mientras la versión no se confirme
+
+### 🏗️ Refactor de arquitectura
+
+- ✅ El HTML/CSS/JS monolítico se separó siguiendo el patrón `config → storage → lógica → ui → app`:
+  - `css/main.css` — design system
+  - `js/config.js` — metadata y versión
+  - `js/storage.js` — persistencia de preferencias
+  - `js/percentiles.js` — lógica de cálculo pura, sin DOM (misma lógica y fórmulas que v1.1.0, verificada contra los casos clínicos del changelog anterior)
+  - `js/ui.js` — renderizado de tarjetas y toasts
+  - `js/app.js` — inicialización y orquestación
+- ✅ `service-worker.js` actualizado (`CACHE_VERSION` → `v1.2.0`) para cachear los nuevos archivos `css/` y `js/`
+- ✅ `manifest.json`: `background_color`/`theme_color` actualizados al esquema oscuro
+
+### 🔄 Compatibilidad
+
+- ✅ Sin cambios en las tablas de percentiles ni en las fórmulas de cálculo
+- ✅ Misma funcionalidad offline
+
+---
+
 ## Versión 1.1.0 (Octubre 2025)
 
 ### ✨ Nuevas Funcionalidades
@@ -168,13 +199,12 @@ Percentil exacto: 63.2
 
 ## 🚀 Próximas Mejoras (Roadmap)
 
-### v1.2.0 (Planificado)
+### v1.3.0 (Planificado)
 - [ ] Gráficos de curvas de crecimiento
 - [ ] Historial de mediciones por paciente
 - [ ] Exportar resultados a PDF
-- [ ] Modo oscuro
 
-### v1.3.0 (Planificado)
+### v1.4.0 (Planificado)
 - [ ] Calculadora de velocidad de crecimiento
 - [ ] Índice de Waterlow
 - [ ] Índice de McLaren
@@ -182,6 +212,6 @@ Percentil exacto: 63.2
 
 ---
 
-**Actualizado:** Octubre 2025  
-**Versión actual:** 1.1.0  
+**Actualizado:** Septiembre 2026  
+**Versión actual:** 1.2.0  
 **Mantenido por:** Equipo de desarrollo médico
