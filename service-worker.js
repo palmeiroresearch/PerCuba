@@ -1,5 +1,5 @@
 // Versión del cache
-const CACHE_VERSION = 'v1.2.0';
+const CACHE_VERSION = 'v1.2.1';
 const CACHE_NAME = `percentiles-cubanos-${CACHE_VERSION}`;
 
 // Archivos a cachear
@@ -15,6 +15,7 @@ const FILES_TO_CACHE = [
   './favicon-16.png',
   './css/main.css',
   './js/config.js',
+  './js/ota-updater.js',
   './js/storage.js',
   './js/percentiles.js',
   './js/ui.js',
